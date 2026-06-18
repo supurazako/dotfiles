@@ -32,7 +32,7 @@ return {
             local treesitter = require("nvim-treesitter")
             treesitter.setup()
 
-            if treesitter.install then
+            if treesitter.install and vim.fn.executable("tree-sitter") == 1 and vim.fn.executable("cc") == 1 then
                 treesitter.install(parsers)
             end
 

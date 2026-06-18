@@ -32,6 +32,17 @@ return {
     },
   },
 
+  -- autopairs
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      map_cr = true,
+      map_bs = true,
+    },
+  },
+
   -- indent guides
   {
     "lukas-reineke/indent-blankline.nvim",
