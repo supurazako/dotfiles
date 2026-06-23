@@ -87,7 +87,7 @@ return {
       { "<leader>xh", "<cmd>HexToggle<cr>", desc = "Toggle hex edit" },
     },
     opts = {
-      dump_cmd = "xxd -g 1 -u",
+      dump_cmd = [[sh -c 'if [ -n "$1" ]; then cat >/dev/null; xxd -g 1 -u "$1"; else xxd -g 1 -u; fi' --]],
       assemble_cmd = "xxd -r",
     },
   },
