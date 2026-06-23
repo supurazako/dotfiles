@@ -78,4 +78,17 @@ return {
       end, { desc = "Trim trailing whitespace" })
     end,
   },
+
+  -- hex editor
+  {
+    "RaafatTurki/hex.nvim",
+    cmd = { "HexDump", "HexAssemble", "HexToggle" },
+    keys = {
+      { "<leader>xh", "<cmd>HexToggle<cr>", desc = "Toggle hex edit" },
+    },
+    opts = {
+      dump_cmd = "xxd -g 1 -u",
+      assemble_cmd = "xxd -r",
+    },
+  },
 }
