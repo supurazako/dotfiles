@@ -33,6 +33,7 @@ return {
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
+        typst = { "typstyle" },
         c = { "clang-format" },
         cpp = { "clang-format" },
       },
