@@ -32,17 +32,6 @@ return {
     },
   },
 
-  -- autopairs
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    opts = {
-      check_ts = true,
-      map_cr = true,
-      map_bs = true,
-    },
-  },
-
   -- indent guides
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -77,18 +66,5 @@ return {
         MiniTrailspace.trim()
       end, { desc = "Trim trailing whitespace" })
     end,
-  },
-
-  -- hex editor
-  {
-    "RaafatTurki/hex.nvim",
-    cmd = { "HexDump", "HexAssemble", "HexToggle" },
-    keys = {
-      { "<leader>xh", "<cmd>HexToggle<cr>", desc = "Toggle hex edit" },
-    },
-    opts = {
-      dump_cmd = [[sh -c 'if [ -n "$1" ]; then cat >/dev/null; xxd -g 1 -u "$1"; else xxd -g 1 -u; fi' --]],
-      assemble_cmd = "xxd -r",
-    },
   },
 }

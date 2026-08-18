@@ -16,6 +16,12 @@ export CVSEDITOR="${CVSEDITOR:-$EDITOR}"
 export SVN_EDITOR="${SVN_EDITOR:-$EDITOR}"
 export GIT_EDITOR="${GIT_EDITOR:-$EDITOR}"
 
+# Reuse the persistent SSH agent managed by keychain. Loading the GitHub key
+# here makes SSH_AUTH_SOCK available to both interactive and login shells.
+if command -v keychain >/dev/null 2>&1 && [ -f "$HOME/.ssh/id_ed25519" ]; then
+    eval "$(keychain --eval --quiet id_ed25519)"
+fi
+
 path_prepend() {
     case ":$PATH:" in
         *":$1:"*) ;;
@@ -31,6 +37,7 @@ path_append() {
 }
 
 [ -d "$HOME/.local/bin" ] && path_prepend "$HOME/.local/bin"
+[ -d "$HOME/.devcontainers/bin" ] && path_prepend "$HOME/.devcontainers/bin"
 [ -d "$HOME/bin" ] && path_append "$HOME/bin"
 [ -d "$HOME/.volta/bin" ] && path_prepend "$HOME/.volta/bin"
 
@@ -41,4 +48,3 @@ if command -v go >/dev/null 2>&1; then
 fi
 
 export PATH
-

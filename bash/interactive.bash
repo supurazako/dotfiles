@@ -26,10 +26,12 @@ alias egrep='egrep --color=auto'
 git_prompt_branch() {
     local branch
     branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)" || return
-    printf " git:(%s)" "$branch"
+    printf " %s" "$branch"
 }
 
 if [ -n "${BASH_VERSION:-}" ]; then
+    # Keep only the last two path components in the prompt.
+    PROMPT_DIRTRIM=1
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[01;33m\]$(git_prompt_branch)\[\033[00m\] \$ '
 fi
 
