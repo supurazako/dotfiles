@@ -1,3 +1,5 @@
 require("core.options")
 require("core.keymaps")
+require("lang.markdown")
+require("lang.typst")
 require("core.lazy")

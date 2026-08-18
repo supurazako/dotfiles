@@ -25,6 +25,7 @@ return {
                 "go",
                 "javascript",
                 "typescript",
+                "typst",
             }
 
             prefer_volta_tree_sitter()
