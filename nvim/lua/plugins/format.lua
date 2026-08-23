@@ -2,6 +2,16 @@ return {
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
+    keys = {
+      {
+        "<leader>f",
+        function()
+          require("conform").format({ async = true, lsp_format = "fallback" })
+        end,
+        mode = { "n", "v" },
+        desc = "Format buffer",
+      },
+    },
     opts = {
       notify_on_error = true,
       format_on_save = function(bufnr)
@@ -38,6 +48,12 @@ return {
         cpp = { "clang-format" },
       },
       formatters = {
+        prettier = {
+          -- Neovim 0.12 can pass an empty stdin to vim.system(). Let Prettier
+          -- edit the file directly until that regression is resolved.
+          stdin = false,
+          args = { "--write", "$FILENAME" },
+        },
         ["clang-format"] = {
           prepend_args = function(_, ctx)
             local config = vim.fs.find({ ".clang-format", "_clang-format" }, {
@@ -54,6 +70,14 @@ return {
           end,
         },
       },
+    },
+  },
+
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "mason-org/mason.nvim" },
+    opts = {
+      ensure_installed = { "prettier" },
     },
   },
 }

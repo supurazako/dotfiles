@@ -73,6 +73,21 @@ return {
         on_attach = on_attach,
       })
 
+      vim.lsp.config("rust_analyzer", {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end,
+        settings = {
+          ["rust-analyzer"] = {
+            check = {
+              command = "clippy",
+            },
+          },
+        },
+      })
+
       vim.lsp.config("tinymist", {
         capabilities = capabilities,
         cmd = tinymist_cmd(),
@@ -83,6 +98,7 @@ return {
       vim.lsp.enable("gopls")
       vim.lsp.enable("ts_native")
       vim.lsp.enable("clangd")
+      vim.lsp.enable("rust_analyzer")
       vim.lsp.enable("tinymist")
     end,
   },

@@ -23,6 +23,7 @@ return {
                 "vimdoc",
                 "c",
                 "go",
+                "rust",
                 "javascript",
                 "typescript",
                 "typst",
@@ -39,12 +40,14 @@ return {
 
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = parsers,
-                callback = function()
+                callback = function(args)
                     if not pcall(vim.treesitter.start) then
                         return
                     end
 
-                    if treesitter.indentexpr then
+                    -- The built-in Rust indent script handles incomplete code,
+                    -- match arms, where clauses, and macros more consistently.
+                    if args.match ~= "rust" and treesitter.indentexpr then
                         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                     end
                 end,
