@@ -37,6 +37,7 @@ path_append() {
 }
 
 [ -d "$HOME/.local/bin" ] && path_prepend "$HOME/.local/bin"
+[ -d "$HOME/.cargo/bin" ] && path_prepend "$HOME/.cargo/bin"
 [ -d "$HOME/.devcontainers/bin" ] && path_prepend "$HOME/.devcontainers/bin"
 [ -d "$HOME/bin" ] && path_append "$HOME/bin"
 [ -d "$HOME/.volta/bin" ] && path_prepend "$HOME/.volta/bin"
