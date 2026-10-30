@@ -23,6 +23,7 @@ return {
                 "vimdoc",
                 "c",
                 "go",
+                "python",
                 "rust",
                 "javascript",
                 "typescript",

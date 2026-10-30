@@ -36,6 +36,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         go = { "gofmt" },
+        python = { "ruff_format" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         javascriptreact = { "prettier" },
@@ -77,7 +78,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = { "mason-org/mason.nvim" },
     opts = {
-      ensure_installed = { "prettier", "pyright" },
+      ensure_installed = { "prettier", "pyright", "ruff" },
     },
   },
 }

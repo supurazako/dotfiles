@@ -65,6 +65,14 @@ return {
         on_attach = on_attach,
       })
 
+      vim.lsp.config("ruff", {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          client.server_capabilities.hoverProvider = false
+          on_attach(client, bufnr)
+        end,
+      })
+
       -- TypeScript 7 ships its own native LSP.  Use it directly instead of
       -- typescript-language-server, which depends on the removed tsserver.js.
       vim.lsp.config("ts_native", vim.tbl_deep_extend("force", vim.lsp.config.tsgo, {
@@ -102,6 +110,7 @@ return {
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("gopls")
       vim.lsp.enable("pyright")
+      vim.lsp.enable("ruff")
       vim.lsp.enable("ts_native")
       vim.lsp.enable("clangd")
       vim.lsp.enable("rust_analyzer")
